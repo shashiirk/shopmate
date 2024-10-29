@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shopmate
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        id.new_generator_mappings: true
+        jdbc.time_zone: UTC
+    database: postgresql
+    open-in-view: false
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    dev.shashiirk.shopmate: debug
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+app:
+  security:
+    jwt:
+      # Secret is Base64 encoded
+      secret: lFc4xtJhl9Z+6EYP0MjkKX5on2xege3VlmGlrN7XGOw=
+      # Token is valid for 24 hours = 24 * 60  * 60 * 1000
+      token-validity-in-milliseconds: 86400000
