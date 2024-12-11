@@ -13,6 +13,7 @@ public class CartActionDTO {
 
     private Long productId;
 
+    @Builder.Default
     private Integer quantity = 1;
 
     private Double amount;
