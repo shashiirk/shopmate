@@ -2,11 +2,13 @@ package dev.shashiirk.shopmate.service.impl;
 
 import dev.shashiirk.shopmate.domain.CartItem;
 import dev.shashiirk.shopmate.dto.CartItemDTO;
+import dev.shashiirk.shopmate.enumeration.CartItemStatus;
 import dev.shashiirk.shopmate.mapper.CartItemMapper;
 import dev.shashiirk.shopmate.repository.CartItemRepository;
 import dev.shashiirk.shopmate.service.CartItemService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -49,4 +51,12 @@ public class CartItemServiceImpl implements CartItemService {
         cartItemRepository.deleteById(id);
     }
 
+    @Override
+    public List<CartItemDTO> findAllActiveItemsByCartId(Long cartId) {
+        return cartItemRepository
+                .findAllByCartIdAndStatus(cartId, CartItemStatus.ADDED)
+                .stream()
+                .map(cartItemMapper::toDTO)
+                .toList();
+    }
 }

@@ -3,7 +3,7 @@ package dev.shashiirk.shopmate.exception;
 public class EmailAlreadyUsedException extends BadRequestException {
 
     public EmailAlreadyUsedException() {
-        super();
+        super("Email is already in use");
     }
 
     public EmailAlreadyUsedException(String message) {

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         userRepository.findByEmail(userDTO.getEmail()).ifPresent(user -> {
             boolean removed = removeNonActiveExistingUser(user);
             if (!removed) {
-                throw new EmailAlreadyUsedException("Email is already in use");
+                throw new EmailAlreadyUsedException();
             }
         });
         return save(userDTO);

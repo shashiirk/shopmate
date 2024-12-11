@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "order_item")
-public class OrderItem {
+public class OrderItem extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "common_seq")
@@ -23,8 +23,8 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JoinColumn(name = "order_summary_id", nullable = false)
+    private OrderSummary orderSummary;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)

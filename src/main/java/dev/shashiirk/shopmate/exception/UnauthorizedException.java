@@ -3,7 +3,7 @@ package dev.shashiirk.shopmate.exception;
 public class UnauthorizedException extends RuntimeException {
 
     public UnauthorizedException() {
-        super();
+        super("Authentication required to view this content.");
     }
 
     public UnauthorizedException(String message) {

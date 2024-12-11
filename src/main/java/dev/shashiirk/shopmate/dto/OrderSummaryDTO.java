@@ -1,22 +1,26 @@
 package dev.shashiirk.shopmate.dto;
 
-import dev.shashiirk.shopmate.domain.Order;
+import dev.shashiirk.shopmate.domain.OrderSummary;
 import dev.shashiirk.shopmate.enumeration.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
- * A DTO for the {@link Order} entity.
+ * A DTO for the {@link OrderSummary} entity.
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDTO {
+public class OrderSummaryDTO {
 
     private Long id;
+
+    private String orderId;
 
     private OrderStatus status;
 
@@ -25,4 +29,7 @@ public class OrderDTO {
     private UserDTO user;
 
     private CartDTO cart;
+
+    private List<OrderItemDTO> orderItems;
+
 }

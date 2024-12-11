@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,14 +14,17 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order_summary")
+public class OrderSummary extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "common_seq")
     @SequenceGenerator(name = "common_seq", sequenceName = "common_seq")
     @Column
     private Long id;
+
+    @Column(name = "order_id", nullable = false)
+    private String orderId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -37,12 +41,15 @@ public class Order {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
+    @OneToMany(mappedBy = "orderSummary", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return Objects.equals(id, order.id);
+        OrderSummary orderSummary = (OrderSummary) o;
+        return Objects.equals(id, orderSummary.id);
     }
 
     @Override
@@ -56,5 +63,5 @@ public class Order {
                "id=" + id +
                '}';
     }
-    
+
 }

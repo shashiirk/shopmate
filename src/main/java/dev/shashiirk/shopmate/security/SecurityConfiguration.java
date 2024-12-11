@@ -2,6 +2,7 @@ package dev.shashiirk.shopmate.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -33,14 +34,26 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(requestsConfigurer -> requestsConfigurer
+                    // Public endpoints (accessible without authentication)
                     .requestMatchers(
                             "/api-docs/**",
                             "/swagger-ui/**",
-                            "/api/auth/**",
-                            "/api/products/**"
+                            "/api/auth/**"
                     ).permitAll()
-                    .anyRequest()
-                    .authenticated()
+                    // User-only endpoints (accessible by ROLE_USER or ROLE_ADMIN)
+                    .requestMatchers(
+                            "/api/checkout/**",
+                            "/api/wishlist/**"
+                    ).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/api/products/**").hasAnyRole("USER", "ADMIN")
+                    // Admin-only endpoints (restricted to ROLE_ADMIN)
+                    .requestMatchers(
+                            "/api/categories/**",
+                            "/api/brands/**",
+                            "/api/products/**"
+                    ).hasRole("ADMIN")
+                    // Catch-all for other endpoints, requiring authentication
+                    .anyRequest().authenticated()
             )
             .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

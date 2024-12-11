@@ -15,7 +15,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "cart_item")
-public class CartItem {
+public class CartItem extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "common_seq")
@@ -61,5 +61,5 @@ public class CartItem {
                "id=" + id +
                '}';
     }
-    
+
 }

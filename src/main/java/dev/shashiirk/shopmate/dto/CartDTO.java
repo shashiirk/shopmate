@@ -1,5 +1,6 @@
 package dev.shashiirk.shopmate.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.shashiirk.shopmate.domain.Cart;
 import dev.shashiirk.shopmate.enumeration.CartStatus;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,7 @@ public class CartDTO {
 
     private CartStatus status;
 
+    @JsonIgnore
     private UserDTO user;
+
 }

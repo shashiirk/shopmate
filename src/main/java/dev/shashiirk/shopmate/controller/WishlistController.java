@@ -1,7 +1,9 @@
 package dev.shashiirk.shopmate.controller;
 
 import dev.shashiirk.shopmate.domain.Wishlist;
+import dev.shashiirk.shopmate.dto.WishlistActionDTO;
 import dev.shashiirk.shopmate.dto.WishlistDTO;
+import dev.shashiirk.shopmate.dto.WishlistResponseDTO;
 import dev.shashiirk.shopmate.exception.BadRequestException;
 import dev.shashiirk.shopmate.exception.NotFoundException;
 import dev.shashiirk.shopmate.repository.WishlistRepository;
@@ -116,6 +118,42 @@ public class WishlistController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteWishlist(@PathVariable Long id) {
         wishlistService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Retrieves the current wishlist products of the logged-in user.
+     *
+     * @return The ResponseEntity with status 200 (OK) and with body the list of products.
+     */
+    @GetMapping("/products")
+    public ResponseEntity<WishlistResponseDTO> getWishlistProducts() {
+        WishlistResponseDTO wishlistResponseDTO = wishlistService.getProducts();
+        return ResponseEntity.ok().body(wishlistResponseDTO);
+    }
+
+    /**
+     * Adds a product to the current wishlist.
+     *
+     * @param wishlistActionDTO The item to add.
+     * @return The ResponseEntity with status 200 (OK) and with body the added item.
+     */
+    @PostMapping("/products/add")
+    public ResponseEntity<WishlistResponseDTO> addProductToWishlist(
+            @RequestBody WishlistActionDTO wishlistActionDTO) {
+        WishlistResponseDTO wishlistResponseDTO = wishlistService.addProduct(wishlistActionDTO);
+        return ResponseEntity.ok().body(wishlistResponseDTO);
+    }
+
+    /**
+     * Removes a product from the current wishlist.
+     *
+     * @param wishlistActionDTO The item to remove.
+     * @return The ResponseEntity with status 204 (NO_CONTENT).
+     */
+    @PostMapping("/products/remove")
+    public ResponseEntity<Void> removeProductFromWishlist(@RequestBody WishlistActionDTO wishlistActionDTO) {
+        wishlistService.removeProduct(wishlistActionDTO);
         return ResponseEntity.noContent().build();
     }
 

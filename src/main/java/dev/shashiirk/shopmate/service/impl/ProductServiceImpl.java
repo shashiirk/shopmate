@@ -57,6 +57,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return productRepository.existsById(id);
+    }
+
+    @Override
     public List<ProductDTO> findByFilter(List<Long> brandIds, List<Long> categoryIds, ProductsSortOrder sortOrder) {
         Optional<UserDTO> currentUser = authService.getCurrentUser();
 
