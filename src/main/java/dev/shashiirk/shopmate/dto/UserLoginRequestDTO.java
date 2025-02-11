@@ -15,5 +15,5 @@ public class UserLoginRequestDTO {
     @NotBlank
     @Size(max = 60)
     private String password;
-    
+
 }

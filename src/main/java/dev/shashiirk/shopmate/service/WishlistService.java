@@ -1,7 +1,9 @@
 package dev.shashiirk.shopmate.service;
 
 import dev.shashiirk.shopmate.domain.Wishlist;
-import dev.shashiirk.shopmate.dto.*;
+import dev.shashiirk.shopmate.dto.WishlistActionDTO;
+import dev.shashiirk.shopmate.dto.WishlistDTO;
+import dev.shashiirk.shopmate.dto.WishlistResponseDTO;
 
 /**
  * Service interface for managing {@link Wishlist}.

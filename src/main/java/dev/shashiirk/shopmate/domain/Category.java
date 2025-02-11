@@ -49,5 +49,5 @@ public class Category extends Auditable {
                "id=" + id +
                '}';
     }
-    
+
 }

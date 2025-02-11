@@ -1,4 +1,6 @@
-# Shopmate
+<h1 style="text-align: center">
+    Shopmate
+</h1>
 
 The Shopmate E-commerce Backend is a robust RESTful API built with Spring Boot and PostgreSQL. It supports core
 e-commerce features, such as product catalog management, shopping carts, wishlists, and order processing. The

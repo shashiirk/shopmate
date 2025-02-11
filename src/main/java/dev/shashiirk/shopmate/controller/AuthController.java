@@ -1,8 +1,8 @@
 package dev.shashiirk.shopmate.controller;
 
+import dev.shashiirk.shopmate.dto.AuthenticationResponseDTO;
 import dev.shashiirk.shopmate.dto.UserLoginRequestDTO;
 import dev.shashiirk.shopmate.dto.UserRegistrationRequestDTO;
-import dev.shashiirk.shopmate.dto.AuthenticationResponseDTO;
 import dev.shashiirk.shopmate.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

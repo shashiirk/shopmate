@@ -53,5 +53,5 @@ public class WishlistItem extends Auditable {
                "id=" + id +
                '}';
     }
-    
+
 }

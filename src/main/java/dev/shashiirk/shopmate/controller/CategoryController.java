@@ -1,7 +1,7 @@
 package dev.shashiirk.shopmate.controller;
 
-import dev.shashiirk.shopmate.dto.CategoryDTO;
 import dev.shashiirk.shopmate.domain.Category;
+import dev.shashiirk.shopmate.dto.CategoryDTO;
 import dev.shashiirk.shopmate.exception.BadRequestException;
 import dev.shashiirk.shopmate.exception.NotFoundException;
 import dev.shashiirk.shopmate.repository.CategoryRepository;

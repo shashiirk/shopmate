@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class PlaceOrderRequestDTO {
 
     private Long cartId;
-    
+
 }
